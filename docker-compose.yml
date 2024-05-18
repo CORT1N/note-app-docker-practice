@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  frontend:
+    container_name: note-app-frontend
+    image: cort1n/react-note-app-frontend:v1
+    restart: always
+    ports:
+      - "3000:80"
+    depends_on:
+      - api
+
+  api:
+    container_name: note-app-api
+    image: cort1n/react-note-app-api:v1
+    restart: always
+    volumes:
+      - api-data:/data
+
+volumes:
+  api-data:
+    driver: local
